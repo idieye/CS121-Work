@@ -1,0 +1,100 @@
+Crossward, Scrabble, and regular expressions
+========================================================
+```{r}
+words <- readLines(url("http://dtkaplan.github.io/ScientificComputing/Syllabus/Daily/Day-07/word_list_moby_crossword-flat/word_list_moby_crossword.flat.txt"))
+```{r}
+# Report
+length(words)
+# The number of words of length 1 is:
+length(words[grep("^.$", words)])
+# The number of words of length 2 is:
+length(words[grep("^..$", words)])
+# The number of words of length 3 is:
+length(words[grep("^...$", words)])
+# The number of words of length 4 is:
+length(words[grep("^....$", words)])
+# The number of words of length 5 is:
+length(words[grep("^.....$", words)])
+# The number of words of length 6 is:
+length(words[grep("^......$", words)])
+# The number of words of length 7 is:
+length(words[grep("^.......$", words)])
+# The number of words of length 8 is:
+length(words[grep("^........$", words)])
+# The number of words of length 9 is:
+length(words[grep("^.........$", words)])
+# The number of words of length 10 is:
+length(words[grep("^..........$", words)])
+# The number of words of length 11 is:
+length(words[grep("^...........$", words)])
+# The number of words of length 12 is:
+length(words[grep("^............$", words)])
+# The number of words of length 13 is:
+length(words[grep("^.............$", words)])
+# The number of words of length 14 is:
+length(words[grep("^..............$", words)])
+# The number of words of length 15 is:
+length(words[grep("^...............$", words)])
+# The number of words of length 16 is:
+length(words[grep("^................$", words)])
+# The number of words of length 17 is:
+length(words[grep("^.................$", words)])
+# The number of words of length 18 is:
+length(words[grep("^..................$", words)])
+# The number of words of length 19 is:
+length(words[grep("^...................$", words)])
+# The number of words of length 20 is:
+length(words[grep("^....................$", words)])
+# The number of words of length 21 is:
+length(words[grep("^.....................$", words)])
+# The number of words of length 22 is:
+length(words[grep("^......................$", words)])
+```{r}
+# The 100 longest words are:
+words[grep("^................$", words)]
+words[grep("^..................$", words)]
+words[grep("^...................$", words)]
+words[grep("^....................$", words)]
+words[grep("^.....................$", words)]      
+           
+```
+```{r}
+# The number of words starting with "a" is:
+length(words[grep("^a...", words)])
+# The number of words starting with "b" is:
+length(words[grep("^b...", words)])
+# The number of words starting with "c" is:
+length(words[grep("^c...", words)])
+# The number of words starting with "d" is:
+length(words[grep("^d...", words)])
+# The number of words starting with "e" is:
+length(words[grep("^e...", words)])
+# The number of words starting with "f" is:
+length(words[grep("^f...", words)])
+# The number of words starting with "g" is:
+length(words[grep("^g...", words)])
+# The full list of words with a “q” but no “u” following is:
+words[grep("q[^u]...", words)]
+```{r}
+# crossword helper
+
+crosswardhelper <- function(word,definition){
+word <- c("hungry","thristy", "sleepy")
+definition <- c('in need of food','in need of drink','in need of rest')
+matched <- grep(word,definition)
+return(names(definition)[matched])
+}
+```{r}
+#crosswordhelper test
+crosswardhelper(hungry)
+```
+
+```
+
+```
+
+```
+
+```
+
+
