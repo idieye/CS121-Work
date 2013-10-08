@@ -1,0 +1,46 @@
+String Transforms
+========================================================
+```{r}
+# Reverser
+Reverser <- function(x) {
+letters -> strsplit(x, "")[[1]]
+R <- letters[rev(1:nchar(x))]
+paste(R, collapse="")
+}
+```
+```{r}
+# Reverser Test
+Reverser("world")
+Reverser("Ibrahima")
+Reverser("Computer")
+```{r}
+# Scrambler
+Scrambler <- function(x) {
+letters -> strsplit(x, "")[[1]]
+R <- letters[sample(1:nchar(x))]
+paste(R, collapse="")
+}
+```{r}
+# Scrambler test
+Scrambler("love")
+Scrambler("Senegal")
+Scrambler("Minnesota")
+```
+```{r}
+VowelBleeper
+VowelBleeper <- function(x) {
+letters -> strsplit(x, "")
+Vowels <- c("e","o","a","e","i","y")
+R <- gsub(Vowels, "*", x)
+paste(R, collapse="")}
+```{r}
+# VowelBleeper test
+VowelBleeper("computer")
+```
+
+```
+
+```
+
+```
+
