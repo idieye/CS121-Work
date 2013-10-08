@@ -27,10 +27,10 @@ Scrambler("Senegal")
 Scrambler("Minnesota")
 ```
 ```{r}
-VowelBleeper
+
 VowelBleeper <- function(x) {
-letters -> strsplit(x, "")
-Vowels <- c("e","o","a","e","i","y")
+letters -> unlist(strsplit(x, ""))
+Vowels <- "[aeiou]" #  c("e","o","a","e","i","y")
 R <- gsub(Vowels, "*", x)
 paste(R, collapse="")}
 ```{r}

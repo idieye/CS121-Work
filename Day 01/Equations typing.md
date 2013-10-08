@@ -30,6 +30,3 @@
 
 Source of the euations: [a college level math textbook](http://college.cengage.com/mathematics/larson/calculus_early/3e/shared/chapter15/clc7eap1502.pdf)
 
-
-
-

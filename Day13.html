@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>String Transforms</title>
+<title>Day 13</title>
 
 <style type="text/css">
 body, td {
@@ -178,83 +178,52 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>String Transforms</h1>
+<h1>Day 13</h1>
 
-<pre><code class="r"># Reverser
-Reverser &lt;- function(x) {
-    letters &lt;- strsplit(x, &quot;&quot;)[[1]]
-    R &lt;- letters[rev(1:nchar(x))]
-    paste(R, collapse = &quot;&quot;)
+<pre><code class="r"># Add up V
+addEm &lt;- function(v) {
+    sum &lt;- 0
+    for (k in 1:length(v)) sum &lt;- sum + v[k]
+    return(sum)
 }
 </code></pre>
 
-<pre><code class="r"># Reverser Test
-Reverser(&quot;world&quot;)
+<pre><code class="r"># addEm test
+addEm(1:5)
 </code></pre>
 
-<pre><code>## [1] &quot;dlrow&quot;
+<pre><code>## [1] 15
 </code></pre>
 
-<pre><code class="r">Reverser(&quot;Ibrahima&quot;)
+<pre><code class="r">addEm(1:10)
 </code></pre>
 
-<pre><code>## [1] &quot;amiharbI&quot;
+<pre><code>## [1] 55
 </code></pre>
 
-<pre><code class="r">Reverser(&quot;Computer&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;retupmoC&quot;
-</code></pre>
-
-<pre><code class="r"># Scrambler
-Scrambler &lt;- function(x) {
-    letters &lt;- strsplit(x, &quot;&quot;)[[1]]
-    R &lt;- letters[sample(1:nchar(x))]
-    paste(R, collapse = &quot;&quot;)
+<pre><code class="r"># newaddEm
+newaddEm &lt;- function(v) {
+    if (length(v) == 0) {
+        return(0)
+    }
+    return(v[1] + newaddEm(v[-1]))
 }
 </code></pre>
 
-<pre><code class="r"># Scrambler test
-Scrambler(&quot;love&quot;)
+<pre><code class="r"># newaddEm test
+newaddEm(1:5)
 </code></pre>
 
-<pre><code>## [1] &quot;veol&quot;
+<pre><code>## [1] 15
 </code></pre>
 
-<pre><code class="r">Scrambler(&quot;Senegal&quot;)
+<pre><code class="r">newaddEm(1:10)
 </code></pre>
 
-<pre><code>## [1] &quot;gaeSeln&quot;
-</code></pre>
-
-<pre><code class="r">Scrambler(&quot;Minnesota&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;nsinMetoa&quot;
-</code></pre>
-
-<pre><code class="r">
-VowelBleeper &lt;- function(x) {
-    letters &lt;- unlist(strsplit(x, &quot;&quot;))
-    Vowels &lt;- &quot;[aeiou]&quot;  #  c(&#39;e&#39;,&#39;o&#39;,&#39;a&#39;,&#39;e&#39;,&#39;i&#39;,&#39;y&#39;)
-    R &lt;- gsub(Vowels, &quot;*&quot;, x)
-    paste(R, collapse = &quot;&quot;)
-}
-</code></pre>
-
-<pre><code class="r"># VowelBleeper test
-VowelBleeper(&quot;computer&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;c*mp*t*r&quot;
+<pre><code>## [1] 55
 </code></pre>
 
 <pre><code>
-</code></pre>
-
-<pre><code>
-
 </code></pre>
 
 </body>

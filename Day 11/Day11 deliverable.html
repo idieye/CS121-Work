@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>String Transforms</title>
+<title>Base conversion deliverable</title>
 
 <style type="text/css">
 body, td {
@@ -178,79 +178,92 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>String Transforms</h1>
+<h1>Base conversion deliverable</h1>
 
-<pre><code class="r"># Reverser
-Reverser &lt;- function(x) {
-    letters &lt;- strsplit(x, &quot;&quot;)[[1]]
-    R &lt;- letters[rev(1:nchar(x))]
-    paste(R, collapse = &quot;&quot;)
+<pre><code class="r"># Task 1 toBase function
+toBase &lt;- function(Z, b) {
+    sofar &lt;- c()
+    while (Z != 0) {
+        r &lt;- Z%%b
+        Z &lt;- (Z - r)/b
+        sofar &lt;- c(r, sofar)
+    }
+    return(as.character(sofar))
 }
 </code></pre>
 
-<pre><code class="r"># Reverser Test
-Reverser(&quot;world&quot;)
+<pre><code class="r"># test toBase function
+toBase(10, 2)
 </code></pre>
 
-<pre><code>## [1] &quot;dlrow&quot;
+<pre><code>## [1] &quot;1&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot;
 </code></pre>
 
-<pre><code class="r">Reverser(&quot;Ibrahima&quot;)
+<pre><code class="r">toBase(1000, 16)
 </code></pre>
 
-<pre><code>## [1] &quot;amiharbI&quot;
+<pre><code>## [1] &quot;3&quot;  &quot;14&quot; &quot;8&quot;
 </code></pre>
 
-<pre><code class="r">Reverser(&quot;Computer&quot;)
+<pre><code class="r">toBase(100, 3)
 </code></pre>
 
-<pre><code>## [1] &quot;retupmoC&quot;
+<pre><code>## [1] &quot;1&quot; &quot;0&quot; &quot;2&quot; &quot;0&quot; &quot;1&quot;
 </code></pre>
 
-<pre><code class="r"># Scrambler
-Scrambler &lt;- function(x) {
-    letters &lt;- strsplit(x, &quot;&quot;)[[1]]
-    R &lt;- letters[sample(1:nchar(x))]
-    paste(R, collapse = &quot;&quot;)
+<pre><code class="r">baseToNumeric(2, Z)
+</code></pre>
+
+<pre><code>## Error: could not find function &quot;baseToNumeric&quot;
+</code></pre>
+
+<pre><code class="r"># basetoNumeric without loops
+basetoNumeric &lt;- function(Nvec, b) {
+    howMany &lt;- length(Nvec)
+    herdsize &lt;- b^((howMany - 1):0)
+    return(sum(as.numeric(Nvec) * herdsize))
 }
 </code></pre>
 
-<pre><code class="r"># Scrambler test
-Scrambler(&quot;love&quot;)
+<pre><code class="r"># basetoNumeric test
+basetoNumeric(c(&quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;), 8)
 </code></pre>
 
-<pre><code>## [1] &quot;veol&quot;
+<pre><code>## [1] 4012
 </code></pre>
 
-<pre><code class="r">Scrambler(&quot;Senegal&quot;)
+<pre><code class="r">basetoNumeric(c(&quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;), 9)
 </code></pre>
 
-<pre><code>## [1] &quot;gaeSeln&quot;
+<pre><code>## [1] 5638
 </code></pre>
 
-<pre><code class="r">Scrambler(&quot;Minnesota&quot;)
+<pre><code class="r">basetoNumeric(c(&quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;), 12)
 </code></pre>
 
-<pre><code>## [1] &quot;nsinMetoa&quot;
+<pre><code>## [1] 13024
 </code></pre>
 
-<pre><code class="r">
-VowelBleeper &lt;- function(x) {
-    letters &lt;- unlist(strsplit(x, &quot;&quot;))
-    Vowels &lt;- &quot;[aeiou]&quot;  #  c(&#39;e&#39;,&#39;o&#39;,&#39;a&#39;,&#39;e&#39;,&#39;i&#39;,&#39;y&#39;)
-    R &lt;- gsub(Vowels, &quot;*&quot;, x)
-    paste(R, collapse = &quot;&quot;)
+<pre><code class="r"># basetoNumeric with loops
+BasetoNumeric &lt;- function(Nvec, b) {
+    sheepCount &lt;- 0
+    boxSize &lt;- 1
+    for (k in length(Nvec):1) {
+        sheepCount &lt;- sheepCount + boxSize * Nvec[k]
+        boxSize &lt;- boxSize * b
+    }
+    return(as.numeric(sheepCount))
 }
 </code></pre>
 
-<pre><code class="r"># VowelBleeper test
-VowelBleeper(&quot;computer&quot;)
+<pre><code class="r"># BasetoNumeric test
+BasetoNumeric(c(&quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;), 8)
 </code></pre>
 
-<pre><code>## [1] &quot;c*mp*t*r&quot;
+<pre><code>## Error: non-numeric argument to binary operator
 </code></pre>
 
-<pre><code>
+<pre><code class="r"># look at syllabus
 </code></pre>
 
 <pre><code>

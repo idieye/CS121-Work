@@ -1,0 +1,56 @@
+Base conversion deliverable
+========================================================
+```{r}
+# Task 1
+# toBase function
+toBase <- function(Z,b) {
+sofar <- c()
+while(Z!=0){
+r <- Z%%b
+Z <- (Z-r)/b
+sofar <-c(r,sofar)}       
+return(as.character(sofar))}
+
+```{r}
+# test toBase function
+toBase(10,2)
+toBase(1000,16)
+toBase(100,3)
+```
+
+
+```{r}
+baseToNumeric(2,Z)
+```
+```{r}
+# basetoNumeric without loops
+basetoNumeric <- function(Nvec,b){
+howMany <- length(Nvec)
+herdsize <- b^((howMany-1):0)
+return(sum(as.numeric(Nvec)*herdsize)) 
+}
+```
+```{r}
+# basetoNumeric test
+basetoNumeric(c("7","6","5","4"),8)
+basetoNumeric(c("7","6","5","4"),9)
+basetoNumeric(c("7","6","5","4"),12)
+```
+```{r}
+# basetoNumeric with loops
+BasetoNumeric <- function(Nvec,b){
+sheepCount <- 0
+boxSize <- 1
+for(k in length(Nvec):1){
+sheepCount <- sheepCount + boxSize*Nvec[k]
+boxSize <- boxSize*b}
+return(as.numeric(sheepCount))}
+```{r}
+# BasetoNumeric test
+BasetoNumeric(c("7","6","5","4"),8)
+# look at syllabus
+```
+
+```
+
+

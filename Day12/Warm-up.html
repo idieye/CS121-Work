@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>String Transforms</title>
+<title>Day 12 warm-up</title>
 
 <style type="text/css">
 body, td {
@@ -178,83 +178,33 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>String Transforms</h1>
+<h1>Day 12 warm-up</h1>
 
-<pre><code class="r"># Reverser
-Reverser &lt;- function(x) {
-    letters &lt;- strsplit(x, &quot;&quot;)[[1]]
-    R &lt;- letters[rev(1:nchar(x))]
-    paste(R, collapse = &quot;&quot;)
+<pre><code class="r"># blastoff
+blastoff &lt;- function(time) {
+    while (time != 0) {
+        Sys.sleep(1)
+        cat(time, &quot;\n&quot;)
+        time &lt;- time - 1
+    }
+    Sys.sleep(1)
+    cat(&quot;blastoff!!!!*&quot;)
 }
 </code></pre>
 
-<pre><code class="r"># Reverser Test
-Reverser(&quot;world&quot;)
+<pre><code class="r"># blastoff test
+blastoff(5)
 </code></pre>
 
-<pre><code>## [1] &quot;dlrow&quot;
-</code></pre>
-
-<pre><code class="r">Reverser(&quot;Ibrahima&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;amiharbI&quot;
-</code></pre>
-
-<pre><code class="r">Reverser(&quot;Computer&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;retupmoC&quot;
-</code></pre>
-
-<pre><code class="r"># Scrambler
-Scrambler &lt;- function(x) {
-    letters &lt;- strsplit(x, &quot;&quot;)[[1]]
-    R &lt;- letters[sample(1:nchar(x))]
-    paste(R, collapse = &quot;&quot;)
-}
-</code></pre>
-
-<pre><code class="r"># Scrambler test
-Scrambler(&quot;love&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;veol&quot;
-</code></pre>
-
-<pre><code class="r">Scrambler(&quot;Senegal&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;gaeSeln&quot;
-</code></pre>
-
-<pre><code class="r">Scrambler(&quot;Minnesota&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;nsinMetoa&quot;
-</code></pre>
-
-<pre><code class="r">
-VowelBleeper &lt;- function(x) {
-    letters &lt;- unlist(strsplit(x, &quot;&quot;))
-    Vowels &lt;- &quot;[aeiou]&quot;  #  c(&#39;e&#39;,&#39;o&#39;,&#39;a&#39;,&#39;e&#39;,&#39;i&#39;,&#39;y&#39;)
-    R &lt;- gsub(Vowels, &quot;*&quot;, x)
-    paste(R, collapse = &quot;&quot;)
-}
-</code></pre>
-
-<pre><code class="r"># VowelBleeper test
-VowelBleeper(&quot;computer&quot;)
-</code></pre>
-
-<pre><code>## [1] &quot;c*mp*t*r&quot;
+<pre><code>## 5 
+## 4 
+## 3 
+## 2 
+## 1 
+## blastoff!!!!*
 </code></pre>
 
 <pre><code>
-</code></pre>
-
-<pre><code>
-
 </code></pre>
 
 </body>

@@ -51,7 +51,7 @@ Scrambler("love")
 ```
 
 ```
-## [1] "leov"
+## [1] "veol"
 ```
 
 ```r
@@ -59,7 +59,7 @@ Scrambler("Senegal")
 ```
 
 ```
-## [1] "elSngea"
+## [1] "gaeSeln"
 ```
 
 ```r
@@ -67,22 +67,15 @@ Scrambler("Minnesota")
 ```
 
 ```
-## [1] "aetnosinM"
+## [1] "nsinMetoa"
 ```
 
 
 ```r
-VowelBleeper
-```
 
-```
-## Error: object 'VowelBleeper' not found
-```
-
-```r
 VowelBleeper <- function(x) {
-    letters <- strsplit(x, "")
-    Vowels <- c("e", "o", "a", "e", "i", "y")
+    letters <- unlist(strsplit(x, ""))
+    Vowels <- "[aeiou]"  #  c('e','o','a','e','i','y')
     R <- gsub(Vowels, "*", x)
     paste(R, collapse = "")
 }
@@ -94,12 +87,7 @@ VowelBleeper("computer")
 ```
 
 ```
-## Warning: argument 'pattern' has length > 1 and only the first element will
-## be used
-```
-
-```
-## [1] "comput*r"
+## [1] "c*mp*t*r"
 ```
 
 
