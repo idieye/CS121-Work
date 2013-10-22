@@ -26,6 +26,13 @@ return(v[1]+newaddEm(v[-1]))
 newaddEm(1:5)
 newaddEm(1:10)
 ```
+```{r}
+# addrecursively(add up all the numbers in a vector)
+
+```
+```{r}
+
+```
 
 ```
 
