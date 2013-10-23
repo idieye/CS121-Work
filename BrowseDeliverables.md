@@ -35,7 +35,18 @@ These deliverables are more or less in reverse chronological order.
 The links let you view your files as they appear on GitHub.  To edit and update your work, use the RStudio editor and the standard from RStudio: 
 > compile -> stage -> commit -> push.
 
-.....................
+=====================
+
+## Computing Numerical Derivatives
+
+... in which you use a very simple numerical scheme for computing derivatives and then package it up so that differentiating a function gives back a function.
+
+* [Assignment](http://dtkaplan.github.io/ScientificComputing/Assignments/FiniteDifferenceDifferentiation.html).  
+* Repository Path: <code>Mathematics/FiniteDifference.[html | Rmd]</code>
+* Your Files: [view HTML](http://idieye.github.io/CS121-Work/Mathematics/FiniteDifference.html); [raw Rmd](http://idieye.github.io/CS121-Work/Mathematics/FiniteDifference.Rmd) 
+
+<a href='http://idieye.github.io/CS121-Work/Mathematics/FiniteDifference.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=idieye.github.io/CS121-Work/Mathematics/FiniteDifference.html&size=200'></a>
+
 
 ## Reading *Huck Finn*
 
