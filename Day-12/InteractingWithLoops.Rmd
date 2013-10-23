@@ -1,7 +1,7 @@
 Day 12 deliverable
 ========================================================
 ```{r}
-# Testing human response times
+# Testing human response times(do the experiment)
 getData <- function(N){
 for(k in 1:N){
 before <- Sys.time
