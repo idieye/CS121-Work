@@ -34,7 +34,7 @@ Vowels <- "[aeiou]" #  c("e","o","a","e","i","y")
 R <- gsub(Vowels, "*", x)
 paste(R, collapse="")}
 ```{r}
-# VowelBleeper test (need to do more, ok)
+# VowelBleeper test
 VowelBleeper("computer")
 ```
 
