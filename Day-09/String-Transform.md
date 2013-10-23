@@ -51,7 +51,7 @@ Scrambler("love")
 ```
 
 ```
-## [1] "veol"
+## [1] "evol"
 ```
 
 ```r
@@ -59,7 +59,7 @@ Scrambler("Senegal")
 ```
 
 ```
-## [1] "gaeSeln"
+## [1] "Salgeen"
 ```
 
 ```r
@@ -67,7 +67,7 @@ Scrambler("Minnesota")
 ```
 
 ```
-## [1] "nsinMetoa"
+## [1] "neioanMts"
 ```
 
 
