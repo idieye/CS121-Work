@@ -85,7 +85,7 @@ matched <- grep(word,definition)
 return(names(definition)[matched])
 }
 ```{r}
-#crosswordhelper test
+#crosswordhelper test need to do this
 crosswardhelper(hungry)
 ```
 
