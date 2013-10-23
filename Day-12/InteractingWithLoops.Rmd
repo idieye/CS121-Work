@@ -1,4 +1,4 @@
-Day 12 deliverable
+Day 12 deliverable: interacting with loops
 ========================================================
 ```{r}
 # Testing human response times(do the experiment)
