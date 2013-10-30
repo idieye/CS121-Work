@@ -3,7 +3,7 @@ Crossward, Scrabble, and regular expressions
 ```{r}
 words <- readLines(url("http://dtkaplan.github.io/ScientificComputing/Syllabus/Daily/Day-07/word_list_moby_crossword-flat/word_list_moby_crossword.flat.txt"))
 ```{r}
-# Report
+# Report summary
 length(words)
 # The number of words of length 1 is:
 length(words[grep("^.$", words)])
