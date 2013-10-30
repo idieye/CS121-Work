@@ -1,0 +1,12 @@
+Day 06: Numbers and String
+========================================================
+```{r}
+# 1-Basic Statistics
+outlier <- function(x){
+scope1 <- quantile(x, probs=0.25)
+scope2 <- quantile(x, probs=0.75)
+outlier <- which(x>=(1.5*(scope2-scope1))
+return(outlier)
+}
+```
+
