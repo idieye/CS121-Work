@@ -6,7 +6,7 @@ words <- readLines(url("http://dtkaplan.github.io/ScientificComputing/Syllabus/D
 ```
 
 ```r
-# Report
+# Report summary
 length(words)
 ```
 
@@ -446,7 +446,7 @@ crosswardhelper <- function(word, definition) {
 ```
 
 ```r
-# crosswordhelper test
+# crosswordhelper test need to do this
 crosswardhelper(hungry)
 ```
 

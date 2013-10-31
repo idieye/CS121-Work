@@ -1,7 +1,7 @@
 String Transforms
 ========================================================
 ```{r}
-# Reverser
+# Reverser function
 Reverser <- function(x) {
 letters -> strsplit(x, "")[[1]]
 R <- letters[rev(1:nchar(x))]
