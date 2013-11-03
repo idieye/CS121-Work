@@ -1,4 +1,4 @@
-Day 06:Numbers and String
+Day 06: Numbers and String
 ========================================================
 ```{r}
 # 1-Basic Statistics
