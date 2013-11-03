@@ -1,0 +1,52 @@
+Day-16
+========================================================
+
+```{r include=FALSE}
+require(COMP121)
+```
+
+```{r}
+puppy <- readPNG(getURLContent("http://dtkaplan.github.io/ScientificComputing/Resources/Images/mindo.png"))
+```
+```{r}
+# cropping tasks
+face <- puppy[30:110,90:180,]
+canvas(x=c(1,220),c(1,220),asp=1)
+rasterImage(face,1,1,100,198)
+leftfrontpaw <- puppy[183:197,1:85,]
+canvas(x=c(1,220),c(1,220),asp=1)
+rasterImage(leftfrontpaw,1,1,100,198)
+octogonaldogtag <- puppy[125:138,105:117,]
+canvas(x=c(1,220),c(1,220),asp=1)
+rasterImage(octogonaldogtag,1,1,100,198)
+```
+
+working on a single plane
+how to brighten
+```{r}
+brighten <- function(image, howmuch=.75){
+return((1-howmuch)*image+howmuch)  
+}
+```
+```{r}
+framer <- function(image, width){
+  size <- dim(image)
+  image <- cbind(brighten(image[,width:1]),image, brighten(image[,size[2]:(size[2]-width)]))
+  image<- rbind(brighten(image[width:1,]),image,brighten(image[size[1]:(size[1]-width),]))
+  return(image)
+}
+```
+```{r}
+show <- function(image){
+  size <- dim(image)
+  canvas(x=c(1,size[2]), y=c(1,size[1]), asp=1)
+  rasterImage(image,1,1,size[2],size[1])
+}
+```
+
+```{r dev="png"}
+red=framer(puppy[,,1],20)
+green=framer(puppy[,,2],20)
+blue=framer(puppy[,,3],20)
+show(array( c(red,green,blue), dim=c(dim(red),3)))
+```

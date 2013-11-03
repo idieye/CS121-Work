@@ -1,0 +1,35 @@
+Day 06: Numbers and String
+========================================================
+```{r}
+# 1-Basic Statistics
+outlier <- function(x){
+scope1 <- quantile(x, c(0.25))
+scope2 <- quantile(x, c(0.75))
+for(k in 1:length(x)){
+outlier <- x[k]>(1.5*(scope2-scope1))
+return(outlier)}
+}
+```
+```{r}
+digitToWord<- function(x,y){
+x[k] <- 0 
+for(k in 1:length(x)) {
+x[k] = y[k]
+}
+return(x[k])
+}
+```
+```{r}
+lettersMatch <- function(words, pattern){
+Match <- grepl("^pattern$",words)
+return(Match)
+}
+```
+```{r}
+piSeries <- function(n){
+num <- -1^n  
+denom <- seq(1,10,by=2)
+return(4*sum((num/denom)))
+}
+```
+
