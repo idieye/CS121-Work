@@ -1,4 +1,4 @@
-# Deliverables for COMP 121 
+# Deliverables for COMP121 
 
 This page lists the deliverables for Comp 121 and provides links to the HTML and RMD files on your GitHub site. 
 
