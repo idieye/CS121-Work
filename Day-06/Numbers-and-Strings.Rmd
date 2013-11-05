@@ -1,27 +1,37 @@
-Day 06: Numbers and String
+Day 06:Numbers and String
 ========================================================
 ```{r}
 # 1-Basic Statistics
 outlier <- function(x){
-scope1 <- quantile(x, c(0.25))
-scope2 <- quantile(x, c(0.75))
-for(k in 1:length(x)){
-outlier <- x[k]>(1.5*(scope2-scope1))
-return(outlier)}
+  scope1 <- quantile(x, c(0.25))
+  scope2 <- quantile(x, c(0.75))
+  bounds <- 1.5*(scope2-scope1)
+  upper <- bounds + scope2  # 10
+  lower <- scope1-bounds  # 2
+  # Another way
+  res <- x < lower | x>upper
+  
+  # One way
+  res <- rep(NA, length(x))
+  for(k in 1:length(x)){
+    res[k] <- x[k]>upper | x[k]<lower
+  }
+return(res)
 }
 ```
 ```{r}
-digitToWord<- function(x,y){
-x[k] <- 0 
-for(k in 1:length(x)) {
-x[k] = y[k]
+digitToWord<- function(digits,words){
+res <- character(length(digits))
+for(k in 1:length(digits)) {
+  res[k] = words[digits[k]+1]
 }
-return(x[k])
+return(res)
 }
 ```
 ```{r}
 lettersMatch <- function(words, pattern){
-Match <- grepl("^pattern$",words)
+  grepPattern <- paste("^",pattern,"$", sep="")
+  Match <- grepl(grepPattern,words)
 return(Match)
 }
 ```

@@ -1,0 +1,29 @@
+Day-02
+========================================================
+require(canvas)
+```{r}
+plot(1,2, type = "n", xlim = c(0,30), ylim = c(0,30))
+Drawcircle <- function(x,y,r,color){
+  angle <- seq(0,2*pi,length=100)
+  xpoints <- x + r*cos(angle)
+  ypoints <- y + r*sin(angle)
+  polygon(xpoints,ypoints,col=color,border=NULL)
+}
+#Drawcircle test
+Drawcircle(15,15,5,col="blue")
+Drawsquare <- function(x,y,col){
+spoints <-lines(c(x, y), c(y,y))
+lines(c(y,y),c(y,x))
+lines(c(y,x),c(x,x))
+lines(c(x,x),c(x,y))
+print(spoints)
+}
+Drawsquare(10,15,col="red")
+Drawsquare(12,15,col="green")
+Drawelipse <- function(x,y,color){
+  angle <- seq(0,2*pi,length=100)
+  xpoints <- x + 3*cos(angle)
+  ypoints <- y + 5*sin(angle)
+  polygon(xpoints,ypoints,col=color,border=NULL)
+  }
+  Drawelipse(12,15,col="red")

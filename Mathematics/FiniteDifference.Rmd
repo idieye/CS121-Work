@@ -1,0 +1,64 @@
+Derivatives as finite differences
+========================================================
+# The function f using latex: \[y=3x^2+ 2x + 2\]
+# the function f using R
+f <- 3x^2 + 2*x + 2
+df <- 6*x + 2
+```{r}
+# Derivative finder
+evalD <- function(f, x) {
+h <- 1e-08
+return((f(x + h) - f(x - h))/(2 * h))
+}
+```
+```{r}
+# Derivative finder test
+f <- function(x) 6*x + 2
+curve(f,0,15,n=100)
+plot(f,0,10, col="red")
+g <- function(x) 3*x^2 + 2*x + 2
+evalD(g, c(0:10))
+plot(evalD(g, c(0:10)),col="blue")
+
+# how to plot the difference? how to plot in smae graph?
+```
+```{r}
+# Task 2
+hevalD <- function(f, x,h) {
+return((f(x + h) - f(x - h))/(2 * h))
+}
+```
+```{r}
+# hevalD test
+g <- function(x) 3*x^2 + 2*x + 2
+plot(hevalD(g, c(0:10),1e-20),col="blue")
+plot(hevalD(g, c(0:10),1e-15),col="green")
+plot(hevalD(g, c(0:10),1e-10),col="red")
+plot(hevalD(g, c(0:10),1e-5),col="orange")
+plot(hevalD(g, c(0:10),0.1),col="violet")
+plot(hevalD(g, c(0:10),1),col="black")
+# 1e-5 seems to be working pretty well. But, again ask for how to plot the difference and confirm.
+```
+```{r}
+# Task 3
+# When x is zero, h becomes 0 and you end up facing a situation where you have to decide by zero (which maths does not allow).
+#There's an alternative expression: 1e-8*pmax(1,abs(x)) that works better. This...
+# Let's test it.
+plot(hevalD(g, c(0:10)), (1e-8*pmax(1,abs(0:10))),col="black")
+# This is not working, ASK!
+```
+```{r}
+# Task 4
+myD <- function(f) {
+return(function(x) evalD(f, x))
+}
+```
+```{r}
+# myD test
+g <- function(x) 3*x^2 + 2*x + 2
+myD(g)
+# How does the value of myD() “remember” f? 
+# What determines that the function returned by myD() will take just a single, numerical argument?
+
+```
+
