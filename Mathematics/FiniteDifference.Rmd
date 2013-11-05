@@ -1,4 +1,4 @@
-Derivatives as finite differences:
+Derivatives as finite differences
 ========================================================
 # The function f using latex: \[y=3x^2+ 2x + 2\]
 # the function f using R
