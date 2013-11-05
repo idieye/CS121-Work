@@ -1,6 +1,5 @@
 Day-02
 ========================================================
-require(canvas)
 ```{r}
 plot(1,2, type = "n", xlim = c(0,30), ylim = c(0,30))
 Drawcircle <- function(x,y,r,color){
