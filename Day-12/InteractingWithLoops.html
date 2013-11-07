@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Day 12 deliverable: interacting with loops</title>
+<title></title>
 
 <style type="text/css">
 body, td {
@@ -178,12 +178,13 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Day 12 deliverable: interacting with loops</h1>
+<p>Day-12 Interacting with loops</p>
 
 <pre><code class="r"># Testing human response times
 getData &lt;- function(N) {
+    result &lt;- rep(NA, N)
     for (k in 1:N) {
-        before &lt;- Sys.time
+        before &lt;- Sys.time()
         readline(&quot;Press return:&quot;)
         after &lt;- Sys.time()
         delay &lt;- as.numeric(after - before)
