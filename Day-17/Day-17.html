@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Base conversion deliverable</title>
+<title>Day-17</title>
 
 <style type="text/css">
 body, td {
@@ -178,87 +178,69 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Base conversion deliverable</h1>
+<h1>Day-17</h1>
 
-<pre><code class="r"># Task 1 toBase function
-toBase &lt;- function(Z, b) {
-    sofar &lt;- c()
-    while (Z != 0) {
-        r &lt;- Z%%b
-        Z &lt;- (Z - r)/b
-        sofar &lt;- c(r, sofar)
+<pre><code class="r">require(COMP121)
+</code></pre>
+
+<pre><code>## Loading required package: COMP121 Loading required package: jpeg Loading
+## required package: png Loading required package: RCurl Loading required
+## package: bitops Loading required package: markdown
+</code></pre>
+
+<pre><code class="r"># Generate a plane of colors
+
+## Utility Functions
+ShowImage &lt;- function(image) {
+    size &lt;- dim(image)
+    canvas(x = c(1, size[2]), y = c(1, size[1]), asp = 1)
+    rasterImage(image, 1, 1, size[2], size[1])
+}
+
+# vvvvvvvvvvvvvvvvvvvvvvvvvvvv ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+planeBind &lt;- function(red, green, blue) {
+    array(c(red, green, blue), dim &lt;- c(dim(red)[1], dim(red)[2], 3))
+}
+# ==========================
+colorPlane &lt;- function(npixels = 50, howMuchBlue = 0.5) {
+
+    x &lt;- seq(0, 1, length = npixels)
+
+    # initialize state
+    red &lt;- matrix(0, nrow = npixels, ncol = npixels)
+    for (k in 1:npixels) {
+        # update
+        red[, k] &lt;- cbind(x)
     }
-    return(as.character(sofar))
-}
-</code></pre>
 
-<pre><code class="r"># test toBase function
-toBase(10, 2)
-</code></pre>
-
-<pre><code>## [1] &quot;1&quot; &quot;0&quot; &quot;1&quot; &quot;0&quot;
-</code></pre>
-
-<pre><code class="r">toBase(1000, 16)
-</code></pre>
-
-<pre><code>## [1] &quot;3&quot;  &quot;14&quot; &quot;8&quot;
-</code></pre>
-
-<pre><code class="r">toBase(100, 3)
-</code></pre>
-
-<pre><code>## [1] &quot;1&quot; &quot;0&quot; &quot;2&quot; &quot;0&quot; &quot;1&quot;
-</code></pre>
-
-<pre><code class="r"># basetoNumeric without loops
-basetoNumeric &lt;- function(Nvec, b) {
-    howMany &lt;- length(Nvec)
-    herdsize &lt;- b^((howMany - 1):0)
-    return(sum(as.numeric(Nvec) * herdsize))
-}
-</code></pre>
-
-<pre><code class="r"># basetoNumeric test
-basetoNumeric(c(&quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;), 8)
-</code></pre>
-
-<pre><code>## [1] 4012
-</code></pre>
-
-<pre><code class="r">basetoNumeric(c(&quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;), 9)
-</code></pre>
-
-<pre><code>## [1] 5638
-</code></pre>
-
-<pre><code class="r">basetoNumeric(c(&quot;7&quot;, &quot;6&quot;, &quot;5&quot;, &quot;4&quot;), 12)
-</code></pre>
-
-<pre><code>## [1] 13024
-</code></pre>
-
-<pre><code class="r"># basetoNumeric with loops
-BasetoNumeric &lt;- function(Nvec, b) {
-    sheepCount &lt;- 0
-    boxSize &lt;- 1
-    for (k in length(Nvec):1) {
-        sheepCount &lt;- sheepCount + boxSize * Nvec[k]
-        boxSize &lt;- boxSize * b
+    green &lt;- matrix(0, nrow = npixels, ncol = npixels)
+    for (k in 1:npixels) {
+        green[k, ] &lt;- rbind(x)
     }
-    return(as.numeric(sheepCount))
+
+    blue &lt;- matrix(howMuchBlue, nrow = npixels, ncol = npixels)
+
+    return(planeBind(red, green, blue))
 }
+
+ShowImage(colorPlane(howMuchBlue = 1, npixels = 50))
 </code></pre>
 
-<pre><code class="r"># BasetoNumeric test
-BasetoNumeric(c(7, 6, 5, 4), 8)
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfgAAAH4CAYAAACmKP9/AAAACXBIWXMAAAsSAAALEgHS3X78AAAM3ElEQVR4nO3cUY4dSRUE0GoLlsAvu0PsaRbFHuYb1oD5CI0YRu623cpwNOlzJIToZ5viUZORcbPKzwMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPd7WV/Az+vzX5/n+curH//5jd/62mff+/PGZx/hGl777CNcw3t+/v98DT/T/9b3fPYRruE9P//41/Dr8/Lyrzd+509BwM98/uV5nr/9z49efvfvL9/wn//42R//9dav/dbPvvfXvvXzH3UNb30v62v42vfSvIZv/V5OXsN7r+/0Nbx2Xa3/zrd+7Ue6hi/9/Edew7de17f+uf/19+fl5ZfnJ/dpfQEAwHkCHgAuJOAB4EICHgAu9Kf1BfysPj3P83l9EQAXsraGgB96+fovAeA7vTzP8+/1RXwAAn5EuAN0aPDhDB4ALqTBD2nxAOd9eozon0fAzxidANAkZwDgQhr8iNfkADqsrSHgh5zBA5xnbQ0BP+IGBOjQ4MMZPABcSIMf0uIBztNcQ8CPuAEBaBLwI56iB+iwtoaAHzKiBzjP2hoCfsQNCNChwYejYAC4kAY/pMUDnKe5hoAfcQMC0CTgRzxFD9BhbQ0BP2RED3CetTVMigHgQhr8iB0mQIcRfQj4ISEPcJ7RdAj4ETcgAE1yBgAupMGPeE0OoMPaGgJ+yBk8wHnW1jCiB4ALafAjdpgAHUb0IeCHhDzAeUbTIeBH3IAANMkZALiQBj9iPA/Q4Qw+BPyQkAc4z9oaAn7E2QhAhwYfcgYALqTBj/iragE6NNcQ8EPOiQBosdEBgAtp8CPaO0CH488Q8ENCHuA8a2sI+BFnIwAdGnzIGQC4kAY/4jU5gA7NNQT8kHMiAFoE/IhwB+gwHQ2TDAC4kAY/pMUDnGdtDQE/YnQC0GFEHwJ+xFP0AB0KVAj4IWMkAFoE/IhwB+gwHQ0BPyTkAc6ztoajCgC4kAY/YmcF0GFEHwJ+xFP0AB0KVAj4IedEALTY6ADAhTT4Ee0doMPxZwj4ISEPcJ61NYzoAeBCGvyInRVAhxF9CPgRr8kBdChQIeCHnBMB0GKjAwAX0uBHtHeADsefIeCHhDzAedbWEPAjzkYAOjT4kDMAcCENfsRrcgAdmmsI+CHnRAC02OgAwIU0+BHtHaDD8WcI+CEhD3CetTUE/IizEYAODT7kDABcSIMf8ZocQIfmGgJ+yDkRAC0CfkS4A3SYjoZJBgBcSIMf0uIBzrO2hoAfMToB6DCiDwE/4il6gA4FKgT8kDESAC0CfkS4A3SYjoZJBgBcSIMf0uIBzrO2hoAfMToB6DCiDwE/4il6gA4FKgT8kDESAC02OgBwIQ1+RHsH6HD8GQJ+SMgDnGdtDSN6ALiQBj9iZwXQYUQfAn7Ea3IAHQpUCPgh50QAtNjoAMCFNPgR7R2gw/FnCPgRZ/AAHQpUCPghNyHAecpTOIMHgAtp8CPaO0CH5hoCfkjIA9BiowMAF9LgR+ysADo8ZBcCfsRrcgAdjj9DwA+5CQHOU57CpBgALqTBj2jvAB2aawj4ISEPQIuAH7HDBOhwBh9yBgAupMGPeE0OoMPxZwj4ITchwHnKUwj4EeEO0OHsOXwPAHAhDX5IiwegRcCPGJ0AdDiDDwE/4il6gA7T0RDwQ25CgPOUpxDwI8IdoMMRaAj4ISEPQIuNDgBcSIMfsbMC6HAGHwJ+xFP0AB2OP0ORBIALafBDdpkA55mOhoAfEe4AHUbTIeCHhDwALTY6AHAhDX7Ezgqgwxl8CPgRr8kBdDj+DAE/5CYEOE95CpNiALiQBj+ivQN0aK4h4IeEPAAtNjoAcCENfsTOCqDDQ3Yh4Ee8JgfQ4fgzBPyQmxDgPOUpTIoB4EIa/Ij2DtChuYaAHxLyALQI+BE7TIAOZ/AhZwDgQhr8iNfkADocf4aAH3ITApynPIURPQBcSIMf0d4BOjTXEPBDQh6AFgE/YocJ0OEMPgT8iKfoATpMR0PAD7kJAc5TnkLAjwh3gA5HoCHgh4Q8AC02OgBwIQ1+xM4KoMMZfAj4EU/RA3Q4/gxFEgAupMEP2WUCnGc6GgJ+RLgDdBhNh4AfEvIAtNjoAMCFNPgROyuADmfwIeBHjOcBOqyvoUgCwIU0+CG7TIDzjOhDwI8YnQB0WF9DwI/4q2oBaLLRAYALafBDzuABzjMdDQE/ItwBOqyvIeCH3IQA52nw4QweAC6kwY/YWQF0WF9DwI94TQ6AJgE/5Awe4DzlKQT8iHAH6LC+hqMKALiQBj9klwlwnhF9CPgRoxOADutrCPgRT9ED0CTgh4zoAc5TnkLAjwh3gA7raziqAIALafBDdpkA5xnRh4AfMToB6LC+hu8BAC6kwY94TQ6AJgE/5Awe4DzlKQT8iHAH6LC+hjN4ALiQBj9klwlwnhF9CPgRoxOADutrCPgRT9ED0GSjAwAX0uCHnMEDnGc6GgJ+RLgDdFhfw4geAC6kwQ/ZZQKcZ0QfAn7E6ASgw/oaAn7Ea3IANNnoAMCFNPghZ/AA55mOhoAfEe4AHdbXEPBDbkKA8zT4cAYPABfS4EfsrAA6rK8h4Ee8JgdAk40OAFxIgx/ykB3AeaajIeBHhDtAh/U1BPyQmxDgPA0+BPyIhx8AOqyvIeBHPEUPQJOAHzKiBzhPeQoBPyLcATqsr+GoAgAupMEP2WUCnGdEHwJ+xOgEoMP6Gr4HALiQBj/iNTkAmgT8kDN4gPOUpxDwI8IdoMP6Gs7gAeBCGvyQXSbAeUb0IeBHjE4AOqyvIeBHPEUPQJONDgBcSIMfcgYPcJ7paAj4EeEO0GF9DSN6ALiQBj9klwlwnhF9CPgRoxOADutrCPgR7R2AJhsdALiQBj+kxQOc5ww+BPyI0QlAh/IUAn7EX1UL0GFtDUUSAC6kwQ8ZIwGcp7mGgB8R7gA02egAwIU0+CEtHuA8D9mFgB8xOgHoUJ5CwI94TQ6gw9oaAn7ILhPgPBPSEPAjwh2AJhsdALiQBj+kxQOc5ww+BPyI0QlAh/IUAn7EU/QAHdbWEPBDdpkA55mQhu8BAC6kwY9o7wA0CfghIQ9wnjP4EPAjzkYAOpSnkDMAcCENfsRrcgAd1tYQ8EPGSADnGU2HgB8R7gA02egAwIU0+CEtHuA8Z/Ah4EeMTgA6lKeQMwBwIQ1+xGtyAB3W1hDwQ8ZIAOcZTYeAHxHuADTZ6ADAhTT4IS0e4Dxn8CHgR4xOADqUpxDwI56iB+iwtoYiCQAX0uCHjJEAztNcQ8CPCHcAmmx0AOBCGvyQFg9wnofsQsCPGJ0AdChPIeBHvCYH0GFtDQE/ZJcJcJ4JafgeAOBCGvyI9g5Ak4AfEvIA5zmDDwE/4mwEoEN5CgE/4il6gA5rawj4IbtMgPNMSMP3AAAX0uBHtHcAmgT8kJAHOM8ZfAj4EWcjAB3KU8gZALiQBj/iNTmADmtrCPghYySA84ymQ8CPCHcAmmx0AOBCGvyQFg9wnjP4EPAjRicAHcpTyBkAuJAGP2KHCdBhRB8CfkjIA5xnNB0CfsQNCECTnAGAC2nwI/6qWoAOa2sI+CFn8ADnWVtDwI+4AQE6NPhwBg8AF9Lgh7R4gPM01xDwI25AAJrkDABcSIMf8ZocQIe1NQT8kDN4gPOsrSHgR9yAAB0afDiDB4ALafBDWjzAeZprCPgRNyAATQJ+xFP0AB3W1hDwQ0b0AOdZW0PAj7gBATo0+BDwQ0Ie4DzPOIXvAQAupMGP2FkB0CTgRzxFD9BhbQ0BP+QMHuA8a2uYFAPAhTT4ETtMgA4j+hDwQ0Ie4Dyj6RDwI25AAJrkDABcSIMf8ZocQIe1NQT8kDN4gPOsrWFEDwAX0uBH7DABOozoQ8APCXmA84ymQ8CPuAEBaJIzAHAhAQ8AFzKi3/n1eZ5/vPrp5+f1Q/rXPnvr5887PnvrIYHXPvven3/ts+d5//V/7/f01mfvvf7W9/Gee+NLf/Z7/qwv/Tlf++z09/ebH/X//4/65+S9v+c3p9eNH3FvvOfnX/vsef755qcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPzefwAfIMLGKZvQTgAAAABJRU5ErkJggg==" alt="plot of chunk unnamed-chunk-1"/> </p>
+
+<pre><code class="r">require(manipulate)
 </code></pre>
 
-<pre><code>## [1] 4012
+<pre><code>## Loading required package: manipulate
 </code></pre>
 
-<pre><code>
+<pre><code class="r">manipulate({
+    plot(1:2)
+}, blue = slider(0, 1, step = 0.01, label = &quot;Amount of Blue&quot;))
+</code></pre>
 
+<pre><code>## Error: no such symbol rs_createUUID
 </code></pre>
 
 </body>
