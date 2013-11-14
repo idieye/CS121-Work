@@ -183,7 +183,182 @@ hljs.initHighlightingOnLoad();
 <pre><code class="r">words &lt;- readLines(url(&quot;http://dtkaplan.github.io/ScientificComputing/Syllabus/Daily/Day-07/word_list_moby_crossword-flat/word_list_moby_crossword.flat.txt&quot;))
 </code></pre>
 
-<pre><code class="r"># Report summary
+<pre><code class="r">
+L &lt;- nchar(words)
+table(L)
+</code></pre>
+
+<pre><code>## L
+##     2     3     4     5     6     7     8     9    10    11    12    13 
+##    85   908  3686  8258 14374 21727 26447 16658  9199  5296  3166  1960 
+##    14    15    16    17    18    19    20    21 
+##  1023   557   261   132    48    16     5     3
+</code></pre>
+
+<pre><code class="r">words[L &gt;= 17]
+</code></pre>
+
+<pre><code>##   [1] &quot;absentmindednesses&quot;    &quot;acquaintanceships&quot;    
+##   [3] &quot;adventitiousnesses&quot;    &quot;antiadministration&quot;   
+##   [5] &quot;antiauthoritarian&quot;     &quot;anticonservationist&quot;  
+##   [7] &quot;antidiscrimination&quot;    &quot;antieavesdropping&quot;    
+##   [9] &quot;antiestablishment&quot;     &quot;antimaterialistic&quot;    
+##  [11] &quot;antimiscegenation&quot;     &quot;antirevolutionary&quot;    
+##  [13] &quot;antitechnological&quot;     &quot;apprehensivenesses&quot;   
+##  [15] &quot;biodegradabilities&quot;    &quot;blameworthinesses&quot;    
+##  [17] &quot;bloodthirstinesses&quot;    &quot;cantankerousnesses&quot;   
+##  [19] &quot;carnivorousnesses&quot;     &quot;characteristically&quot;   
+##  [21] &quot;characterizations&quot;     &quot;chemotherapeutical&quot;   
+##  [23] &quot;circumnavigations&quot;     &quot;comprehensiveness&quot;    
+##  [25] &quot;comprehensivenesses&quot;   &quot;consideratenesses&quot;    
+##  [27] &quot;constitutionality&quot;     &quot;coproprietorships&quot;    
+##  [29] &quot;counteraccusation&quot;     &quot;counteraccusations&quot;   
+##  [31] &quot;counteraggression&quot;     &quot;counteraggressions&quot;   
+##  [33] &quot;counterchallenges&quot;     &quot;countercomplaints&quot;    
+##  [35] &quot;countercriticisms&quot;     &quot;counterdemonstration&quot; 
+##  [37] &quot;counterdemonstrations&quot; &quot;counterdemonstrator&quot;  
+##  [39] &quot;counterdemonstrators&quot;  &quot;counterinflationary&quot;  
+##  [41] &quot;counterinfluences&quot;     &quot;counterpropagation&quot;   
+##  [43] &quot;counterpropagations&quot;   &quot;counterretaliation&quot;   
+##  [45] &quot;counterretaliations&quot;   &quot;counterrevolution&quot;    
+##  [47] &quot;counterrevolutions&quot;    &quot;counterstrategies&quot;    
+##  [49] &quot;countersuggestion&quot;     &quot;countersuggestions&quot;   
+##  [51] &quot;countertendencies&quot;     &quot;counterterrorisms&quot;    
+##  [53] &quot;counterterrorists&quot;     &quot;cyclophosphamides&quot;    
+##  [55] &quot;destructibilities&quot;     &quot;disfranchisements&quot;    
+##  [57] &quot;disinterestedness&quot;     &quot;disinterestednesses&quot;  
+##  [59] &quot;disqualifications&quot;     &quot;distinctivenesses&quot;    
+##  [61] &quot;electrocardiogram&quot;     &quot;electrocardiograms&quot;   
+##  [63] &quot;electrocardiograph&quot;    &quot;electrocardiographs&quot;  
+##  [65] &quot;electromagnetally&quot;     &quot;environmentalists&quot;    
+##  [67] &quot;extraconstitutional&quot;   &quot;extradepartmental&quot;    
+##  [69] &quot;extragovernmental&quot;     &quot;feeblemindednesses&quot;   
+##  [71] &quot;foresightednesses&quot;     &quot;halfheartednesses&quot;    
+##  [73] &quot;hardheartednesses&quot;     &quot;heterogenousnesses&quot;   
+##  [75] &quot;histopathological&quot;     &quot;homogeneousnesses&quot;    
+##  [77] &quot;housewifelinesses&quot;     &quot;hydroelectrically&quot;    
+##  [79] &quot;hydroelectricities&quot;    &quot;hyperaggressiveness&quot;  
+##  [81] &quot;hyperaggressivenesses&quot; &quot;hyperconscientious&quot;   
+##  [83] &quot;hypernationalistic&quot;    &quot;hypersensitiveness&quot;   
+##  [85] &quot;hypersensitivenesses&quot;  &quot;hypersensitivities&quot;   
+##  [87] &quot;illustriousnesses&quot;     &quot;impecuniousnesses&quot;    
+##  [89] &quot;impenetrabilities&quot;     &quot;inaccessibilities&quot;    
+##  [91] &quot;inappropriateness&quot;     &quot;inappropriatenesses&quot;  
+##  [93] &quot;inattentivenesses&quot;     &quot;inconsequentially&quot;    
+##  [95] &quot;inconsiderateness&quot;     &quot;inconsideratenesses&quot;  
+##  [97] &quot;incorrigibilities&quot;     &quot;indispensabilities&quot;   
+##  [99] &quot;indistinguishable&quot;     &quot;industrialization&quot;    
+## [101] &quot;industrializations&quot;    &quot;industriousnesses&quot;    
+## [103] &quot;ineffectivenesses&quot;     &quot;ineffectualnesses&quot;    
+## [105] &quot;injudiciousnesses&quot;     &quot;inquisitivenesses&quot;    
+## [107] &quot;instrumentalities&quot;     &quot;intelligibilities&quot;    
+## [109] &quot;intemperatenesses&quot;     &quot;interdenominational&quot;  
+## [111] &quot;interdepartmental&quot;     &quot;intergovernmental&quot;    
+## [113] &quot;interinstitutional&quot;    &quot;internationalisms&quot;    
+## [115] &quot;internationalized&quot;     &quot;internationalizes&quot;    
+## [117] &quot;internationalizing&quot;    &quot;interrelatednesses&quot;   
+## [119] &quot;interrelationship&quot;     &quot;irreconcilabilities&quot;  
+## [121] &quot;irreconcilability&quot;     &quot;irresponsibilities&quot;   
+## [123] &quot;kaleidoscopically&quot;     &quot;lightheartednesses&quot;   
+## [125] &quot;magnanimousnesses&quot;     &quot;maintainabilities&quot;    
+## [127] &quot;maneuverabilities&quot;     &quot;mellifluousnesses&quot;    
+## [129] &quot;meritoriousnesses&quot;     &quot;microminiaturization&quot; 
+## [131] &quot;microminiaturizations&quot; &quot;microminiaturized&quot;    
+## [133] &quot;misappropriations&quot;     &quot;miscellaneousness&quot;    
+## [135] &quot;miscellaneousnesses&quot;   &quot;mischievousnesses&quot;    
+## [137] &quot;misinterpretation&quot;     &quot;misinterpretations&quot;   
+## [139] &quot;mispronunciations&quot;     &quot;misrepresentation&quot;    
+## [141] &quot;misrepresentations&quot;    &quot;mistrustfulnesses&quot;    
+## [143] &quot;misunderstandings&quot;     &quot;multidenominational&quot;  
+## [145] &quot;multidisciplinary&quot;     &quot;myelosuppressions&quot;    
+## [147] &quot;nearsightednesses&quot;     &quot;nondenominational&quot;    
+## [149] &quot;nondiscrimination&quot;     &quot;nondiscriminations&quot;   
+## [151] &quot;nondiscriminatory&quot;     &quot;nonindustrialized&quot;    
+## [153] &quot;nonproliferations&quot;     &quot;nonrepresentative&quot;    
+## [155] &quot;obstreperousnesses&quot;    &quot;overconscientious&quot;    
+## [157] &quot;overexaggerations&quot;     &quot;paleoclimatologic&quot;    
+## [159] &quot;perpendicularities&quot;    &quot;photoelectrically&quot;    
+## [161] &quot;photosynthesizing&quot;     &quot;picturesquenesses&quot;    
+## [163] &quot;plenipotentiaries&quot;     &quot;postbaccalaureate&quot;    
+## [165] &quot;postfertilization&quot;     &quot;postfertilizations&quot;   
+## [167] &quot;postrevolutionary&quot;     &quot;precipitatenesses&quot;    
+## [169] &quot;prestidigitations&quot;     &quot;pretentiousnesses&quot;    
+## [171] &quot;professionalizing&quot;     &quot;programmabilities&quot;    
+## [173] &quot;promiscuousnesses&quot;     &quot;reclassifications&quot;    
+## [175] &quot;rehospitalization&quot;     &quot;rehospitalizations&quot;   
+## [177] &quot;remunerativenesses&quot;    &quot;repetitiousnesses&quot;    
+## [179] &quot;representativeness&quot;    &quot;representativenesses&quot; 
+## [181] &quot;reproachfulnesses&quot;     &quot;resourcefulnesses&quot;    
+## [183] &quot;responsiblenesses&quot;     &quot;simultaneousnesses&quot;   
+## [185] &quot;straightforwarder&quot;     &quot;straightforwardest&quot;   
+## [187] &quot;subclassification&quot;     &quot;subclassifications&quot;   
+## [189] &quot;subconsciousnesses&quot;    &quot;superefficiencies&quot;    
+## [191] &quot;superenthusiastic&quot;     &quot;superintellectual&quot;    
+## [193] &quot;superintellectuals&quot;    &quot;superintelligence&quot;    
+## [195] &quot;superintelligences&quot;    &quot;superintendencies&quot;    
+## [197] &quot;thoughtlessnesses&quot;     &quot;trustworthinesses&quot;    
+## [199] &quot;unconsciousnesses&quot;     &quot;underhandednesses&quot;    
+## [201] &quot;undernourishments&quot;     &quot;unscrupulousnesses&quot;   
+## [203] &quot;venturesomenesses&quot;     &quot;wrongheadednesses&quot;
+</code></pre>
+
+<pre><code class="r">words[rev(order(L))[1:100]]
+</code></pre>
+
+<pre><code>##   [1] &quot;microminiaturizations&quot; &quot;hyperaggressivenesses&quot;
+##   [3] &quot;counterdemonstrations&quot; &quot;representativenesses&quot; 
+##   [5] &quot;microminiaturization&quot;  &quot;hypersensitivenesses&quot; 
+##   [7] &quot;counterdemonstrators&quot;  &quot;counterdemonstration&quot; 
+##   [9] &quot;multidenominational&quot;   &quot;miscellaneousnesses&quot;  
+##  [11] &quot;irreconcilabilities&quot;   &quot;interdenominational&quot;  
+##  [13] &quot;inconsideratenesses&quot;   &quot;inappropriatenesses&quot;  
+##  [15] &quot;hyperaggressiveness&quot;   &quot;extraconstitutional&quot;  
+##  [17] &quot;electrocardiographs&quot;   &quot;disinterestednesses&quot;  
+##  [19] &quot;counterretaliations&quot;   &quot;counterpropagations&quot;  
+##  [21] &quot;counterinflationary&quot;   &quot;counterdemonstrator&quot;  
+##  [23] &quot;comprehensivenesses&quot;   &quot;anticonservationist&quot;  
+##  [25] &quot;unscrupulousnesses&quot;    &quot;superintelligences&quot;   
+##  [27] &quot;superintellectuals&quot;    &quot;subconsciousnesses&quot;   
+##  [29] &quot;subclassifications&quot;    &quot;straightforwardest&quot;   
+##  [31] &quot;simultaneousnesses&quot;    &quot;representativeness&quot;   
+##  [33] &quot;remunerativenesses&quot;    &quot;rehospitalizations&quot;   
+##  [35] &quot;postfertilizations&quot;    &quot;perpendicularities&quot;   
+##  [37] &quot;obstreperousnesses&quot;    &quot;nondiscriminations&quot;   
+##  [39] &quot;misrepresentations&quot;    &quot;misinterpretations&quot;   
+##  [41] &quot;lightheartednesses&quot;    &quot;irresponsibilities&quot;   
+##  [43] &quot;interrelatednesses&quot;    &quot;internationalizing&quot;   
+##  [45] &quot;interinstitutional&quot;    &quot;industrializations&quot;   
+##  [47] &quot;indispensabilities&quot;    &quot;hypersensitivities&quot;   
+##  [49] &quot;hypersensitiveness&quot;    &quot;hypernationalistic&quot;   
+##  [51] &quot;hyperconscientious&quot;    &quot;hydroelectricities&quot;   
+##  [53] &quot;heterogenousnesses&quot;    &quot;feeblemindednesses&quot;   
+##  [55] &quot;electrocardiograph&quot;    &quot;electrocardiograms&quot;   
+##  [57] &quot;countersuggestions&quot;    &quot;counterrevolutions&quot;   
+##  [59] &quot;counterretaliation&quot;    &quot;counterpropagation&quot;   
+##  [61] &quot;counteraggressions&quot;    &quot;counteraccusations&quot;   
+##  [63] &quot;chemotherapeutical&quot;    &quot;characteristically&quot;   
+##  [65] &quot;cantankerousnesses&quot;    &quot;bloodthirstinesses&quot;   
+##  [67] &quot;biodegradabilities&quot;    &quot;apprehensivenesses&quot;   
+##  [69] &quot;antidiscrimination&quot;    &quot;antiadministration&quot;   
+##  [71] &quot;adventitiousnesses&quot;    &quot;absentmindednesses&quot;   
+##  [73] &quot;wrongheadednesses&quot;     &quot;venturesomenesses&quot;    
+##  [75] &quot;undernourishments&quot;     &quot;underhandednesses&quot;    
+##  [77] &quot;unconsciousnesses&quot;     &quot;trustworthinesses&quot;    
+##  [79] &quot;thoughtlessnesses&quot;     &quot;superintendencies&quot;    
+##  [81] &quot;superintelligence&quot;     &quot;superintellectual&quot;    
+##  [83] &quot;superenthusiastic&quot;     &quot;superefficiencies&quot;    
+##  [85] &quot;subclassification&quot;     &quot;straightforwarder&quot;    
+##  [87] &quot;responsiblenesses&quot;     &quot;resourcefulnesses&quot;    
+##  [89] &quot;reproachfulnesses&quot;     &quot;repetitiousnesses&quot;    
+##  [91] &quot;rehospitalization&quot;     &quot;reclassifications&quot;    
+##  [93] &quot;promiscuousnesses&quot;     &quot;programmabilities&quot;    
+##  [95] &quot;professionalizing&quot;     &quot;pretentiousnesses&quot;    
+##  [97] &quot;prestidigitations&quot;     &quot;precipitatenesses&quot;    
+##  [99] &quot;postrevolutionary&quot;     &quot;postfertilization&quot;
+</code></pre>
+
+<pre><code class="r">
+# Report summary
 length(words)
 </code></pre>
 
@@ -541,11 +716,10 @@ words[grep(&quot;q[^u]...&quot;, words)]
 
 <pre><code class="r"># crossword helper
 
-crosswardhelper &lt;- function(word, definition) {
-    word &lt;- c(&quot;hungry&quot;, &quot;thristy&quot;, &quot;sleepy&quot;)
-    definition &lt;- c(&quot;in need of food&quot;, &quot;in need of drink&quot;, &quot;in need of rest&quot;)
-    matched &lt;- grep(word, definition)
-    return(names(definition)[matched])
+crosswordhelper &lt;- function(words, pattern) {
+
+    matched &lt;- words[grep(pattern, words)]
+    return(matched)
 }
 </code></pre>
 
@@ -553,11 +727,18 @@ crosswardhelper &lt;- function(word, definition) {
 crosswardhelper(hungry)
 </code></pre>
 
-<pre><code>## Warning: argument &#39;pattern&#39; has length &gt; 1 and only the first element will
-## be used
+<pre><code>## Error: could not find function &quot;crosswardhelper&quot;
 </code></pre>
 
-<pre><code>## NULL
+<pre><code class="r">crosswordPattern &lt;- function(length, ...) {
+    stuff &lt;- list(...)
+    blank &lt;- c(&quot;^&quot;, rep(&quot;.&quot;, length), &quot;$&quot;)
+    for (k in 1:length(stuff)) {
+        blank[stuff[[k]] + 1] &lt;- names(stuff[k])
+    }
+    pattern &lt;- paste(blank, collapse = &quot;&quot;)
+    return(crosswordhelper(words, pattern))
+}
 </code></pre>
 
 <pre><code>
