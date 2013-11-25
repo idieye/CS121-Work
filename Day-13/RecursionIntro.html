@@ -173,6 +173,10 @@ hljs.initHighlightingOnLoad();
 </script>
 
 
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
 
 </head>
@@ -183,24 +187,29 @@ hljs.initHighlightingOnLoad();
 <pre><code class="r"># Fibonacci with a while loop
 fibloop &lt;- function(n) {
     Ffirst &lt;- 0
+    k &lt;- 1
     Fsecond &lt;- 1
-    while (n &lt; 6) {
+    while (n &gt; k) {
         newF &lt;- Ffirst + Fsecond
         Ffirst &lt;- Fsecond
         Fsecond &lt;- newF
+        k &lt;- k + 1
     }
     return(newF)
 }
 </code></pre>
 
-<pre><code class="r"># fibloop(5)
+<pre><code class="r">fibloop(5)
+</code></pre>
+
+<pre><code>## [1] 5
 </code></pre>
 
 <pre><code class="r">addNSeq &lt;- function(n) {
-    if (n &lt;- 1) {
-        return(1)
+    if (n == 0) {
+        return(0)
     } else {
-        return(addNSeq(n))
+        return(n + addNSeq(n - 1))
     }
 }
 </code></pre>
@@ -208,12 +217,12 @@ fibloop &lt;- function(n) {
 <pre><code class="r">addNSeq(3)
 </code></pre>
 
-<pre><code>## [1] 1
+<pre><code>## [1] 6
 </code></pre>
 
 <pre><code class="r"># Riemann sums
 simpleRiemann &lt;- function(f, a = 0, b = 10, n = 3) {
-    rectangleWidth = (b - a/n)
+    rectangleWidth = (b - a)/n
     midpoints &lt;- seq(a + rectangleWidth/2, b - rectangleWidth/2, length = n)
     rectangleAreas &lt;- sapply(midpoints, f) * rectangleWidth
     return(sum(rectangleAreas))
@@ -225,7 +234,7 @@ simpleRiemann &lt;- function(f, a = 0, b = 10, n = 3) {
 }, a = 0, b = 10, n = 3)
 </code></pre>
 
-<pre><code>## [1] 90
+<pre><code>## [1] 30
 </code></pre>
 
 <pre><code class="r">simpleRiemann(function(x) {
@@ -233,7 +242,7 @@ simpleRiemann &lt;- function(f, a = 0, b = 10, n = 3) {
 }, a = 0, b = 10, n = 3)
 </code></pre>
 
-<pre><code>## [1] 450
+<pre><code>## [1] 150
 </code></pre>
 
 <pre><code class="r">simpleRiemann(function(x) {
@@ -241,7 +250,7 @@ simpleRiemann &lt;- function(f, a = 0, b = 10, n = 3) {
 }, a = 0, b = 10, n = 3)
 </code></pre>
 
-<pre><code>## [1] 2250
+<pre><code>## [1] 972.2
 </code></pre>
 
 <pre><code class="r">integrateRiemann &lt;- function(f, a = 0, b = 1) {
@@ -263,7 +272,7 @@ simpleRiemann &lt;- function(f, a = 0, b = 10, n = 3) {
 }, a = 0, b = 10)
 </code></pre>
 
-<pre><code>## [1] 7.5e+07
+<pre><code>## [1] 150
 </code></pre>
 
 <p>It goes to 5 because we assigned the initial state of nBins to 5.
@@ -288,11 +297,79 @@ There will be 5 Bins in the worst case.</p>
 }, a = 0, b = 10)
 </code></pre>
 
-<pre><code>## Error: evaluation nested too deeply: infinite recursion /
-## options(expressions=)?
+<pre><code>## [1] 150
 </code></pre>
 
 <pre><code class="r"># MY TASKS
+integrateRecursive &lt;- function(f, a = 0, b = 1, span = b - a) {
+    bigBins &lt;- simpleRiemann(f, a = a, b = b, n = 5)
+    smallBins &lt;- simpleRiemann(f, a = a, b = b, n = 10)
+    binsize &lt;- (b - a)/n
+    if (abs(bigBins - smallBins) &lt; 1e-05 | binsize &lt; span/10000) 
+        return(smallBins) else {
+        mid &lt;- (a + b)/2
+        total &lt;- integrateRecursive(f, a = a, b = mid, span = span) + integrateRecursive(f, 
+            a = mid, b = b, span = span)
+        return(total)
+    }
+}
+</code></pre>
+
+<p>My function is \( \sin(3x) \)</p>
+
+<pre><code class="r">f &lt;- function(x) {
+    sin(3 * x + 2)
+}
+</code></pre>
+
+<pre><code class="r">gaussQuadrature &lt;- function(f, a = 0, b = 1) {
+    # Just 4 function evaluations!
+
+    # &#39;Magic&#39; values on z in [0,1]
+    z &lt;- c(c(-1, 1) * sqrt((3 - 2 * sqrt(6/5))/7), c(-1, 1) * sqrt((3 + 2 * 
+        sqrt(6/5))/7))
+    # weights (analogous to bin width)
+    w &lt;- c(rep((18 + sqrt(30))/36, 2), rep((18 - sqrt(30))/36, 2))
+    # Translate to interval x in [a,b]
+    x &lt;- ((b - a)/2) * z + (a + b)/2
+    # evaluate the function at x, multiply by weights, and sum
+    return(((b - a)/2) * sum(w * sapply(x, f)))
+}
+</code></pre>
+
+<pre><code class="r">gaussQuadrature(f)
+</code></pre>
+
+<pre><code>## [1] -0.2333
+</code></pre>
+
+<pre><code class="r">gaussRecursive &lt;- function(f, a, b) {
+    rough &lt;- gaussQuadrature(f, a, b)
+    mid &lt;- (a + b)/2
+    better &lt;- gaussQuadrature(f, a = a, b = mid) + gaussQuadrature(f, a = mid, 
+        b = b)
+    if (abs(better - rough) &lt; 1e-06) 
+        return(better) else (return(gaussRecursive(f, a, mid) + gaussRecursive(f, mid, b)))
+}
+</code></pre>
+
+<pre><code class="r">plotF &lt;- function(f, a = 0, b = 1) {
+    xpoints &lt;- getPoints(f, a, b)
+    plot(xpoints, f(xpoints))
+}
+</code></pre>
+
+<pre><code class="r">getPoints &lt;- function(f, a = 0, b = 1) {
+    bigBins &lt;- simpleRiemann(f, a = a, b = b, n = 5)
+    smallBins &lt;- simpleRiemann(f, a = a, b = b, n = 10)
+    if (abs(bigBins - smallBins) &lt; 1e-05) {
+        return(seq(a, b, length = 5))
+    } else {
+        mid &lt;- (a + b)/2
+        total &lt;- c(getPoints(f, a = a, b = mid), getPoints(f, a = mid, b = b))
+        return(total)
+    }
+}
 </code></pre>
 
 </body>
