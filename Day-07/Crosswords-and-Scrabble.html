@@ -724,10 +724,16 @@ crosswordhelper &lt;- function(words, pattern) {
 </code></pre>
 
 <pre><code class="r"># crosswordhelper test need to do this
-crosswardhelper(hungry)
+crosswordhelper(&quot;hungry&quot;, &quot;gry&quot;)
 </code></pre>
 
-<pre><code>## Error: could not find function &quot;crosswardhelper&quot;
+<pre><code>## [1] &quot;hungry&quot;
+</code></pre>
+
+<pre><code class="r">crosswordhelper(c(&quot;hungry&quot;, &quot;greedy&quot;, &quot;thristy&quot;, &quot;MurphyEdy&quot;), &quot;edy&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;greedy&quot;
 </code></pre>
 
 <pre><code class="r">crosswordPattern &lt;- function(length, ...) {
@@ -741,7 +747,11 @@ crosswardhelper(hungry)
 }
 </code></pre>
 
-<pre><code>
+<pre><code class="r">crosswordPattern(10, a = 3, c = 5, d = 10)
+</code></pre>
+
+<pre><code>## [1] &quot;charcoaled&quot; &quot;reaccented&quot; &quot;reaccepted&quot; &quot;reascended&quot; &quot;spancelled&quot;
+## [6] &quot;unanchored&quot;
 </code></pre>
 
 <pre><code>
