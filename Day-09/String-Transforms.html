@@ -225,13 +225,13 @@ Scrambler(&quot;love&quot;)
 <pre><code class="r">Scrambler(&quot;Senegal&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;aneeglS&quot;
+<pre><code>## [1] &quot;galSeen&quot;
 </code></pre>
 
 <pre><code class="r">Scrambler(&quot;Minnesota&quot;)
 </code></pre>
 
-<pre><code>## [1] &quot;tMeinnaso&quot;
+<pre><code>## [1] &quot;oMtnaenis&quot;
 </code></pre>
 
 <pre><code class="r">
@@ -250,11 +250,75 @@ VowelBleeper(&quot;computer&quot;)
 <pre><code>## [1] &quot;c*mp*t*r&quot;
 </code></pre>
 
-<pre><code>
+<pre><code class="r">VowelBleeper(&quot;science&quot;)
 </code></pre>
 
-<pre><code>
+<pre><code>## [1] &quot;sc**nc*&quot;
+</code></pre>
 
+<pre><code class="r">VowelBleeper(&quot;module&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;m*d*l*&quot;
+</code></pre>
+
+<pre><code class="r">l33t &lt;- function(letters) {
+    string1 &lt;- chartr(&quot;e&quot;, &quot;3&quot;, letters)
+    string2 &lt;- chartr(&quot;g&quot;, &quot;9&quot;, string1)
+    string3 &lt;- chartr(&quot;s&quot;, &quot;5&quot;, string2)
+    string4 &lt;- chartr(&quot;o&quot;, &quot;0&quot;, string3)
+    return(string4)
+}
+</code></pre>
+
+<pre><code class="r">l33t(&quot;hsuet&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;h5u3t&quot;
+</code></pre>
+
+<pre><code class="r">l33t(&quot;venus&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;v3nu5&quot;
+</code></pre>
+
+<pre><code class="r">l33t(&quot;genuine&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;93nuin3&quot;
+</code></pre>
+
+<pre><code class="r">l33t(&quot;oger&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;093r&quot;
+</code></pre>
+
+<pre><code class="r">switcher &lt;- function(input) {
+    sapply(input, FUN = l33t)
+}
+</code></pre>
+
+<pre><code class="r">switcher(&quot;hologram&quot;)
+</code></pre>
+
+<pre><code>##   hologram 
+## &quot;h0l09ram&quot;
+</code></pre>
+
+<pre><code class="r">switcher(&quot;saxophone&quot;)
+</code></pre>
+
+<pre><code>##   saxophone 
+## &quot;5ax0ph0n3&quot;
+</code></pre>
+
+<pre><code class="r">switcher(&quot;electroencephalogrammes&quot;)
+</code></pre>
+
+<pre><code>##   electroencephalogrammes 
+## &quot;3l3ctr03nc3phal09ramm35&quot;
 </code></pre>
 
 </body>

@@ -198,12 +198,42 @@ hljs.initHighlightingOnLoad();
 }
 </code></pre>
 
+<pre><code class="r">tokey(&quot;excellence&quot;)
+</code></pre>
+
+<pre><code>## [1] 5.244e+13
+</code></pre>
+
+<pre><code class="r">tokey(&quot;veritable&quot;)
+</code></pre>
+
+<pre><code>## [1] 2.252e+12
+</code></pre>
+
 <p>Shuffle letters according to key.</p>
 
 <pre><code class="r">Cypher &lt;- function(word) {
     set.seed(tokey(word))
     return(sample(Alpha))
 }
+</code></pre>
+
+<pre><code class="r">Cypher(&quot;computer&quot;)
+</code></pre>
+
+<pre><code>## Warning: NAs introduced by coercion
+</code></pre>
+
+<pre><code>## Error: supplied seed is not a valid integer
+</code></pre>
+
+<pre><code class="r">Cypher(&quot;science&quot;)
+</code></pre>
+
+<pre><code>##  [1] &quot;J&quot; &quot;X&quot; &quot;w&quot; &quot;j&quot; &quot;g&quot; &quot;l&quot; &quot;B&quot; &quot;Z&quot; &quot;V&quot; &quot;f&quot; &quot;S&quot; &quot;O&quot; &quot;W&quot; &quot;v&quot; &quot;^&quot; &quot;q&quot; &quot;N&quot;
+## [18] &quot;D&quot; &quot;x&quot; &quot;u&quot; &quot;Q&quot; &quot;a&quot; &quot;d&quot; &quot;&#39;&quot; &quot;U&quot; &quot;r&quot; &quot;C&quot; &quot;T&quot; &quot;h&quot; &quot; &quot; &quot;A&quot; &quot;G&quot; &quot;E&quot; &quot;I&quot;
+## [35] &quot;M&quot; &quot;z&quot; &quot;p&quot; &quot;y&quot; &quot;b&quot; &quot;F&quot; &quot;i&quot; &quot;;&quot; &quot;m&quot; &quot;$&quot; &quot;s&quot; &quot;t&quot; &quot;L&quot; &quot;c&quot; &quot;Y&quot; &quot;R&quot; &quot;P&quot;
+## [52] &quot;n&quot; &quot;e&quot; &quot;.&quot; &quot;H&quot; &quot;o&quot; &quot;K&quot; &quot;k&quot;
 </code></pre>
 
 <p>Now encrypting.</p>
@@ -214,6 +244,18 @@ hljs.initHighlightingOnLoad();
     old &lt;- paste(Alpha, collapse = &quot;&quot;)
     return(chartr(old, New, message))
 }
+</code></pre>
+
+<pre><code class="r">Encrypte(&quot;odd&quot;, &quot;cannot be divided by two&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;RoQQeBNGmNcZvZcmcNGSNB.e&quot;
+</code></pre>
+
+<pre><code class="r">Encrypte(&quot;even&quot;, &quot;is divisible by two&quot;)
+</code></pre>
+
+<pre><code>## [1] &quot;ftTcfQftfk oTkvTGYa&quot;
 </code></pre>
 
 <p>Now decrypting.</p>
