@@ -1,0 +1,51 @@
+Language
+========================================================
+```{r}
+require(mosaic)
+fetchData("COMP121/word-hints.R")
+letterProportion <- function(string){
+ letters <- unlist(strsplit(string,""))
+ return(prop.table(table(letters))) 
+}
+```
+
+```{r}
+# letterProportiontest
+letterProportion(phraseOne)
+letterProportion(phraseFive)
+```
+
+```{r}
+res <- letterProportion(string)
+freqCompare <- function(res,langProp) {
+  gap <- res - langProp 
+  chisq <- sum((gap^2)/langProp)
+  return(chisq)
+}
+```
+
+```{r}
+# Testing freqCompare
+res <-"Entre broma y broma, la verdad se asoma"
+freqCompare(res,Spanish)
+freqCompare(res,French)
+```
+
+```{r}
+whichlanguage <- function(string){
+  langProp <- list(E=English,G=German,Fi=Finnish,Fr=French,I=Italian,S=Spanish)
+  res <-letterProportion(string)
+  comp <- freqCompare(res,langProp)
+  FinalRes <- langProp[[min(comp)]]
+  return(FinalRes)
+}
+```
+
+```{r}
+# testing whichlanguage
+whichlanguage("phraseTwo")
+whichlanguage("phraseOne")
+```
+
+
+
